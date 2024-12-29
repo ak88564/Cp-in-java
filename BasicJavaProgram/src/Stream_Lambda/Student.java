@@ -1,4 +1,4 @@
-package Stream;
+package Stream_Lambda;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -250,6 +250,7 @@ public class Student {
                 .collect(Collectors.toList());
 
         System.out.println("List of students whose name starts with letter A : "+lstStuName);
+
         //2- Group The Student By Department Names
         Map<String, List<Student>> mapData = list.stream().collect(Collectors.groupingBy(Student::getDepartmantName));
         System.out.println("Students grouped by the department names : "+mapData);

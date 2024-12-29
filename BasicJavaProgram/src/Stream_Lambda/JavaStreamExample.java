@@ -1,4 +1,4 @@
-package Stream;
+package Stream_Lambda;
 
 import java.util.*;
 import java.util.stream.Collectors;

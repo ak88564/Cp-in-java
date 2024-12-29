@@ -16,7 +16,6 @@ class TreeNode{
     }
 }
 class Solution{
-
     List<List<Integer>> LevelOrder(TreeNode root){
         List<List<Integer>> ans = new ArrayList<>();
         if (root==null){
@@ -38,17 +37,11 @@ class Solution{
                 }
             }
             ans.add(level);
-
         }
         return ans;
     }
-
 }
-
-
 public class LevelOrderTraversal {
-
-
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);

@@ -26,6 +26,10 @@ public class BottomViewBT {
         while(!q.isEmpty()){
             Node child = q.poll();
             int index = child.hd;
+            /*
+             Here logic is that the whatever data is inserted first in the line(hd), then that
+             line will not be updated anymore
+             */
             map.put(index, child.data);
             if (child.left!=null){
                 child.left.hd = index -1;
