@@ -2,56 +2,75 @@ package Striver_A2Z_DSA_sheet.BinaryTrees;
 
 import java.util.*;
 
-class Node6{
-    int data;
-    Node6 left;
-    Node6 right;
-
-    public Node6(int data){
-        this.data = data;
-        left =right =null;
-    }
-}
 public class TopViewBT {
+    static class Node{
+        int data;
+        Node left;
+        Node right;
 
-    static void TopViewAlgo(Node6 root){
-        List<Integer> arrList = new ArrayList<>();
-        arrList.add(root.data);
-        Queue<Node6> q = new LinkedList<>();
-        q.add(root);
+        Node(int data){
+            this.data = data;
+            left = right = null;
+        }
+    }
+
+    static class Pair {
+        Node root;
+        Integer value;
+
+        public Pair(Node root, Integer value){
+            this.root = root;
+            this.value = value;
+        }
+    }
+
+    public static List<Integer> topView(Node root){
+        List<Integer> ans = new ArrayList<Integer>();
+
+        Queue<Pair> q = new LinkedList<>();
+
+        if(root==null){
+            return ans;
+        }
+
+        Map<Integer, Integer> mpp = new TreeMap<>();
+
+        q.add(new Pair(root, 0));
+
         while(!q.isEmpty()){
-            Node6 child = q.poll();
-            if (child.left!=null){
-                q.add(child.left);
-                arrList.add(child.left.data);
+            Pair pair = q.poll();
+            Node node = pair.root;
+            int line = pair.value;
+
+            if(!mpp.containsKey(line)){
+                mpp.put(line, node.data);
+            }
+            if(node.left != null){
+                q.add(new Pair(node.left, line-1));
+            }
+
+            if(node.right!=null){
+                q.add(new Pair(node.right, line+1));
             }
         }
-        Collections.reverse(arrList);
-        System.out.println(arrList);
-        q.add(root.right);
-        arrList.add(root.right.data);
-        while(!q.isEmpty()){
-            Node6 child = q.poll();
-            if (child.right!=null){
-                q.add(child.right);
-                arrList.add(child.right.data);
-            }
-        }
-        System.out.println(arrList);
 
+        for(int value: mpp.values()){
+            ans.add(value);
+        }
+        return ans;
     }
 
     public static void main(String[] args) {
-        Node6 root = new Node6(1);
-        root.left = new Node6(2);
-        root.left.left = new Node6(4);
-        root.left.right = new Node6(10);
-        root.left.left.right = new Node6(5);
-        root.left.left.right.right = new Node6(6);
-        root.right = new Node6(3);
-        root.right.right = new Node6(10);
-        root.right.left = new Node6(9);
+        Node root = new Node(10);
+        root.left = new Node(20);
+        root.right = new Node(30);
+        root.left.left = new Node(40);
+        root.left.right = new Node(60);
+        root.right.left = new Node(90);
+        root.right.right = new Node(100);
 
-        TopViewAlgo(root);
+        System.out.println(topView(root));
     }
+
+
 }
