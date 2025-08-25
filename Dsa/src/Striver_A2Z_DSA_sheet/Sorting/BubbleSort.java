@@ -10,12 +10,13 @@ public class BubbleSort {
                     swap(arr, j+1, j);
                 }
             }
-            for (int iterator:arr
-                 ) {
-                System.out.print(iterator + " ");
 
-            };
         }
+        for (int iterator:arr
+        ) {
+            System.out.print(iterator + " ");
+
+        };
     }
     static void swap(int[] arr, int a, int b){
         int temp;
